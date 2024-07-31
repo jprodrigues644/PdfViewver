@@ -12,6 +12,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 export class PdfViewerComponent implements OnInit {
   pdfSrc: string = '';
+  baseUrl : string = '172.28.224.1:85'; // Change This Ip Address 
+
  
   constructor(private route: ActivatedRoute) {
   }
@@ -19,7 +21,9 @@ export class PdfViewerComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.route.snapshot.params['filename']);
     const filename = this.route.snapshot.params['filename'];
-    this.pdfSrc = `http://172.29.192.1:85//${filename}.pdf`
+    this.pdfSrc = `http://${this.baseUrl}//${filename}.pdf`
+
+    //
    }
 
 }
