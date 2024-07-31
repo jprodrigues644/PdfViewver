@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { SettingsService } from '../config/settings.service';
+
+
 
 @Component({
   standalone: true,
@@ -12,16 +15,32 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 export class PdfViewerComponent implements OnInit {
   pdfSrc: string = '';
-  baseUrl : string = '172.28.224.1:85'; // Change This Ip Address 
+  ip = inject(SettingsService).settings.BaseIp;
 
+ 
  
   constructor(private route: ActivatedRoute) {
   }
+  
+//   getLocalIPAddress() {
+//   const os = require('os');
+//   const interfaces = os.networkInterfaces();
+// 	  for (const interfaceName in interfaces) {
+// 		  const addresses = interfaces[interfaceName];
+// 		  for (const i in addresses) {
+// 			  const address = addresses[i];
+// 			  if (address.family === 'IPv4' && !address.internal) {
+// 				  return address.address;
+// 			  }
+// 		  }
+// 	  }
+// 	  return 'Unable to determine local IP address';
+//   }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.params['filename']);
     const filename = this.route.snapshot.params['filename'];
-    this.pdfSrc = `http://${this.baseUrl}//${filename}.pdf`
+    this.pdfSrc = `${this.ip}${filename}.pdf`
 
     //
    }

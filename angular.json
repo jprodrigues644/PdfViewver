@@ -115,6 +115,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+			  "src/web.config",
               {
                 "glob": "**/*",
                 "input": "public",
@@ -135,6 +136,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "50a876d9-bd03-4bc2-932f-52be9bec7386"
   }
 }
 
